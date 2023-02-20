@@ -20,6 +20,8 @@ const Btn = styled.div`
   padding: 3px;
   transition: ease-in-out 0.1s;
   box-sizing: border-box;
+  margin: 0 0.5em 0 0.5em;
+  height: 25px;
   :hover {
     border-bottom: 3px solid white;
     font-weight: 600;

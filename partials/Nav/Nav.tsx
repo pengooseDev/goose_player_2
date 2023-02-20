@@ -7,24 +7,23 @@ const Nav = () => {
       <LeftComponents></LeftComponents>
       <RightComponents>
         <NavLink value={'HOME'} href={'/'} />
-        <NavLink value={'Example'} href={'/example'} />
+        <NavLink value={'Example'} href={'#'} />
       </RightComponents>
     </Container>
   );
 };
 
 const Container = styled.div`
+  background: #111;
   position: fixed;
   padding: 10px;
   top: 0px;
   right: 0px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100vw;
-  height: 47px;
-  a {
-    margin: 0 0.5em 0 0.5em;
-  }
+  height: 30px;
 `;
 
 const RightComponents = styled.div`
