@@ -28,8 +28,19 @@ export default class MyDocument extends NextDocument {
 
   render() {
     return (
-      <Html lang="en">
-        <Head />
+      <Html lang="ko">
+        <Head>
+          <meta name="theme-color" content="#8AC896" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <link rel="apple-touch-icon" href="/apple-icon-180.png" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="196x196"
+            href="favicon_196.png"
+          />
+          <meta name="description" content="MusicPlayer based on Youtube" />
+        </Head>
         <body>
           <Main />
           <NextScript />
