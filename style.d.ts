@@ -6,5 +6,6 @@ declare module 'styled-components' {
     color: string;
     blurBackground: string;
     transitionOption: string;
+    imgFilter: string;
   }
 }
