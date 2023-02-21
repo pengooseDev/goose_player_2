@@ -27,7 +27,7 @@ const Wrapper = styled(motion.div)`
   left: calc(50% - 200px);
   top: calc(50% - 300px);
   color: ${({ theme }) => theme.background};
-  background: rgba(111, 111, 111, 0.5);
+  background: ${({ theme }) => theme.blurBackground};
   box-shadow: 0px 0px 5px ${({ theme }) => theme.color};
   backdrop-filter: blur(3px);
 

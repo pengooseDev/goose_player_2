@@ -4,5 +4,6 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     background: string;
     color: string;
+    blurBackground: string;
   }
 }
