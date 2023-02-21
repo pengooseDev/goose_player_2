@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   font-size: 150px;
   display: flex;
   flex-direction: column;
-  transition: ease-in-out 2s;
+  transition: ease-in-out 1s;
 
   :nth-last-child(2) :last-child {
     transition: ease-in-out 0.2s;
