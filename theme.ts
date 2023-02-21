@@ -4,10 +4,12 @@ export const darkTheme: DefaultTheme = {
   background: '#111',
   color: '#FADEDD',
   blurBackground: 'rgba(111, 111, 111, 0.5)',
+  transitionOption: 'ease-in-out 0.15s',
 };
 
 export const lightTheme: DefaultTheme = {
   background: '#FADEDD',
   color: '#111',
   blurBackground: 'rgba(111, 111, 111, 0.5)',
+  transitionOption: 'ease-in-out 0.15s',
 };
