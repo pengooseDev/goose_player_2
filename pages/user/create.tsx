@@ -2,13 +2,30 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import TextMain from '@components/TextMain';
 import FormText from '@components/FormText';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldErrors } from 'react-hook-form';
 import Hr from '@components/Hr';
 import Github from '@components/icons/github';
 import Link from 'next/link';
 
+interface FormState {
+  id: string;
+  password: string;
+}
+
 const Create = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormState>();
+
+  const onValid = (data: FormState) => {
+    console.log('valid', data);
+  };
+
+  console.log(errors);
+
+  const onInvalid = (err: FieldErrors) => {};
 
   return (
     <>
@@ -19,11 +36,33 @@ const Create = () => {
       </TextMain>
       <Container>
         <Title>Sign in</Title>
-        <Form>
-          <FormText>ID</FormText>
-          <Input type="text" />
-          <FormText>PW</FormText>
-          <Input type="password" />
+        <Form onSubmit={handleSubmit(onValid, onInvalid)}>
+          <FormText>ID {errors.id ? errors.id.message : null}</FormText>
+          <Input
+            {...register('id', {
+              required: 'ID is required',
+              minLength: {
+                value: 4,
+                message: 'longer more than 4',
+              },
+            })}
+            type="text"
+            placeholder="ID"
+          />
+          <FormText>
+            PW {errors.password ? errors.password.message : null}
+          </FormText>
+          <Input
+            {...register('password', {
+              required: 'Password is required',
+              minLength: {
+                value: 4,
+                message: 'longer more than 4',
+              },
+            })}
+            type="password"
+            placeholder="Password"
+          />
           <Submit>create</Submit>
         </Form>
         <BottomWrapper>
@@ -89,10 +128,10 @@ const Input = styled.input`
   border-bottom: solid 2px ${({ theme }) => theme.color};
   transition: ${({ theme }) => theme.transitionOption};
   border-radius: 10px 10px 0 0;
+  color: ${({ theme }) => theme.color};
   :focus {
     outline: none;
     background: ${({ theme }) => theme.background};
-    color: ${({ theme }) => theme.color};
     border-bottom: solid 2px ${({ theme }) => theme.color};
   }
 `;
