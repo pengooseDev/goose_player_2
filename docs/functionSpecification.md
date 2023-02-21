@@ -1,9 +1,11 @@
 ## 기능명세서
 
+- [ ] 컴포넌트 이동간 Motion 고려하기.
+      Route가 변할 때, 어떻게 unmount motion을 넣을 것인지.
+      컴포넌트 클릭시 콜백함수 실행 및 클릭이 끝날 때 실행하려는 함수 실행해주는 HOF만들어도 괜찮을 듯.
 - [x] Redux 환경설정
 - [x] styled-components 환경 설정
 - [x] Provider을 모아둔 컴포넌트 분리 및 Provider 의존성 주입
-
 - [x] Theme Toggle
   - [x] styled.d.ts 선언
   - [x] Globalstyle 생성 & theme 생성
