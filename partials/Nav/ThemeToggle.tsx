@@ -27,5 +27,9 @@ const Color = styled.div`
   width: 100%;
   border-radius: 5px;
   background: ${({ theme }) => theme.color};
+  transition: 0.15s ease-in-out;
+  :hover {
+    cursor: pointer;
+  }
 `;
 export default ToggleBtn;
