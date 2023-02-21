@@ -7,8 +7,9 @@ const Nav = () => {
     <Container>
       <LeftComponents></LeftComponents>
       <RightComponents>
-        <NavLink value={'HOME'} href={'/'} />
-        <NavLink value={'Example'} href={'#'} />
+        <NavLink value={'Home'} href={'/'} />
+        <NavLink value={'LogIn'} href={'/user/login'} />
+        <NavLink value={'SignIn'} href={'/user/create'} />
         <ToggleBtn />
       </RightComponents>
     </Container>
@@ -23,7 +24,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 30px;
+  height: 25px;
 `;
 
 const RightComponents = styled.div`
