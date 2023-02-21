@@ -18,6 +18,7 @@
 - [ ] 로그인이 되어있다면 홈페이지를
 - [ ] 그렇지 않다면 계정 생성 / 로그인 페이지로 이동.
 - `/tweet/[id]` : 트윗의 상세 정보를 보는 페이지로 detail 데이터를 렌더링 한다.
+- [ ] Nav에 현재 session의 로그인 여부 확인해서 Logout / Login optional render
 
 ### user
 
