@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { ReactNode } from 'react';
 
 interface FormTextType {
-  children: string;
+  children: string | ReactNode;
 }
 
 const FormText = ({ children }: FormTextType) => {
