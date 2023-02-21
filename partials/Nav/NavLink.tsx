@@ -15,16 +15,15 @@ const NavLink = ({ href, value }: navLinkProps) => {
 };
 
 const Btn = styled.div`
-  color: #88ce02;
+  color: ${({ theme }) => theme.color};
   font-weight: 600;
-  padding: 3px;
+  padding: 5px;
   transition: ease-in-out 0.1s;
   box-sizing: border-box;
   margin: 0 0.5em 0 0.5em;
-  height: 25px;
+  height: 30px;
   :hover {
-    border-bottom: 3px solid white;
-    font-weight: 600;
+    border-bottom: 3px solid ${({ theme }) => theme.color};
   }
 `;
 
