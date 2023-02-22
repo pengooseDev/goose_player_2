@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { ReactNode } from 'react';
 import { RootState } from '@redux/store';
 import Background from '@/partials/Background';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 interface ProvidersProps {
   children: ReactNode;
@@ -25,14 +26,18 @@ const Providers = ({ children }: ProvidersProps) => {
   );
 };
 
+const client = new QueryClient();
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <Providers>
-        <GlobalStyle />
-        <Nav />
-        <Background />
-        <Component {...pageProps} />
+        <QueryClientProvider client={client}>
+          <GlobalStyle />
+          <Nav />
+          <Background />
+          <Component {...pageProps} />
+        </QueryClientProvider>
       </Providers>
     </Provider>
   );
