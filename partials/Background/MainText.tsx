@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const MainText = () => {
   const { asPath } = useRouter();
-  console.log(asPath);
 
   return (
     <AnimatePresence>
