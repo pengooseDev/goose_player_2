@@ -7,44 +7,48 @@ const MainText = () => {
   console.log(asPath);
 
   return (
-    <Wrapper>
-      <div>Hello.</div>
-      <div>We`re</div>
-      <div>
-        <AnimatePresence>
-          {asPath === '/' ? (
+    <AnimatePresence>
+      {asPath === '/' ? (
+        <Wrapper>
+          <div>Hello.</div>
+          <div>We`re</div>
+          <div>
             <TextMotion
               variants={textVariants}
               initial="from"
               animate="to"
               exit="exit"
-              layoutId="themeText"
             >
               Goose-Player
             </TextMotion>
-          ) : (
+          </div>
+        </Wrapper>
+      ) : (
+        <Wrapper>
+          <div>Hello.</div>
+          <div>We`re</div>
+          <div>
             <TextMotion
               variants={textVariants}
               initial="from"
               animate="to"
               exit="exit"
-              layoutId="themeText"
             >
               Auth
             </TextMotion>
-          )}
-        </AnimatePresence>
-      </div>
-    </Wrapper>
+          </div>
+        </Wrapper>
+      )}
+    </AnimatePresence>
   );
 };
 
 export default MainText;
 
 const textVariants = {
-  from: { opacity: 0 },
-  to: { opacity: 1, transition: { duration: 0.5 } },
-  exit: { opacity: 0, transition: { duration: 0.5 } },
+  from: { opacity: 0, scale: 0, left: -300, transition: { duration: 2 } },
+  to: { opacity: 1, scale: 1, top: 0, transition: { duration: 2 } },
+  exit: { opacity: 0, scale: 0, right: 300, transition: { duration: 2 } },
 };
 
 const TextMotion = styled(motion.div)``;
@@ -52,8 +56,8 @@ const TextMotion = styled(motion.div)``;
 const Wrapper = styled.div`
   padding: 50px;
   position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
   z-index: -5;
   font-weight: 500;
   font-size: 150px;
@@ -62,7 +66,7 @@ const Wrapper = styled.div`
   transition: ease-in-out 1s;
 
   :nth-child(2) :last-child {
-    transition: ease-in-out 0.2s;
+    transition: ${({ theme }) => theme.transitionOption};
     -webkit-text-stroke: 2px ${({ theme }) => theme.color};
     color: ${({ theme }) => theme.background};
     font-size: 100px;
