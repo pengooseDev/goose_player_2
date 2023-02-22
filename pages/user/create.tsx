@@ -2,10 +2,12 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import FormText from '@components/FormText';
 import ErrorMessage from '@components/ErrorMessage';
-import { useForm, FieldErrors } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import Hr from '@components/Hr';
 import Github from '@components/icons/github';
 import Link from 'next/link';
+import { useMutation } from 'react-query';
+import createUser from '@/libs/client/createUser';
 
 interface FormState {
   id: string;
@@ -19,72 +21,74 @@ const Create = () => {
     formState: { errors },
   } = useForm<FormState>();
 
-  const onValid = (data: FormState) => {
-    console.log('valid', data);
+  const { mutate, data, isLoading } = useMutation(createUser, {
+    onSuccess: () => {},
+    onError: () => {},
+  });
+
+  const onValid = async (data: FormState) => {
+    const { id, password } = data;
+    mutate({ id, password });
   };
 
   return (
-    <>
-      <Container>
-        <TopWrapper>
-          <Title>Sign in</Title>
-          <Form onSubmit={handleSubmit(onValid)}>
-            <FormText>
-              <div>ID</div>
-              <ErrorMessage>
-                {errors.id ? errors.id.message : null}
-              </ErrorMessage>
-            </FormText>
-            <Input
-              errorId={!!errors.id}
-              {...register('id', {
-                required: 'is required',
-                minLength: {
-                  value: 4,
-                  message: 'longer more than 4',
-                },
-                validate: (value) => {
-                  const hasAlpha = !!value.match(/[a-zA-Z]/g);
+    <Container>
+      <TopWrapper>
+        <Title>Sign in</Title>
+        <Form onSubmit={handleSubmit(onValid)}>
+          <FormText>
+            <div>ID</div>
+            <ErrorMessage>{errors.id ? errors.id.message : null}</ErrorMessage>
+          </FormText>
+          <Input
+            errorId={!!errors.id}
+            {...register('id', {
+              required: 'is required',
+              minLength: {
+                value: 4,
+                message: 'longer more than 4',
+              },
+              validate: (value) => {
+                const hasAlpha = !!value.match(/[a-zA-Z]/g);
 
-                  return hasAlpha ? true : 'must be include alpha';
-                },
-              })}
-              type="text"
-              placeholder="ID"
-            />
-            <FormText>
-              <div>PW</div>
-              <ErrorMessage>
-                {errors.password ? errors.password.message : null}
-              </ErrorMessage>
-            </FormText>
+                return hasAlpha ? true : 'must be include alpha';
+              },
+            })}
+            type="text"
+            placeholder="ID"
+          />
+          <FormText>
+            <div>PW</div>
+            <ErrorMessage>
+              {errors.password ? errors.password.message : null}
+            </ErrorMessage>
+          </FormText>
 
-            <Input
-              errorId={!!errors.password}
-              {...register('password', {
-                required: 'is required',
-                minLength: {
-                  value: 4,
-                  message: 'longer more than 4',
-                },
-              })}
-              type="password"
-              placeholder="Password"
-            />
-            <Submit>create</Submit>
-          </Form>
-          <SocialText>SignIn with Social</SocialText>
-          <Hr></Hr>
-          <SocialContainer>
-            <Github />
-          </SocialContainer>
-        </TopWrapper>
-        <BottomWrapper>
-          <SocialText>Or Sign Up Using</SocialText>
-          <Link href="/login">login</Link>
-        </BottomWrapper>
-      </Container>
-    </>
+          <Input
+            errorId={!!errors.password}
+            {...register('password', {
+              required: 'is required',
+              minLength: {
+                value: 4,
+                message: 'longer more than 4',
+              },
+            })}
+            type="password"
+            placeholder="Password"
+          />
+          <Submit>create</Submit>
+        </Form>
+        <SocialText>SignIn with Social</SocialText>
+        <Hr></Hr>
+        <SocialContainer>
+          <Github />
+        </SocialContainer>
+      </TopWrapper>
+      <BottomWrapper>
+        <SocialText>Or Sign Up Using</SocialText>
+        <Link href="/login">login</Link>
+      </BottomWrapper>
+    </Container>
   );
 };
 
@@ -195,14 +199,3 @@ const Submit = styled.button`
     color: ${({ theme }) => theme.background};
   }
 `;
-
-/*
-{ filter: saturate(3), 
-  grayscale(100%), 
-  contrast(160%), 
-  brightness(0.25), 
-  blur(3px), 
-  invert(100%), 
-  sepia(100%), 
-  opacity(50%); 
-*/
