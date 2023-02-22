@@ -7,9 +7,9 @@ import GlobalStyle from '@/utils/styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from '@/theme';
 import { useSelector } from 'react-redux';
-import { isReturnStatement } from 'typescript';
 import { ReactNode } from 'react';
 import { RootState } from '@redux/store';
+import Background from '@/partials/Background';
 
 interface ProvidersProps {
   children: ReactNode;
@@ -31,6 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Providers>
         <GlobalStyle />
         <Nav />
+        <Background />
         <Component {...pageProps} />
       </Providers>
     </Provider>
