@@ -12,6 +12,8 @@ const FormText = ({ children }: FormTextType) => {
 export default FormText;
 
 const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
   transition: 0.15s ease-in-out;
   font-weight: 600;
   margin-bottom: 10px;
