@@ -40,49 +40,51 @@ const Create = () => {
         <div>Goose-Player</div>
       </TextMain>
       <Container>
-        <Title>Sign in</Title>
-        <Form onSubmit={handleSubmit(onValid, onInvalid)}>
-          <FormText>ID {errors.id ? errors.id.message : null}</FormText>
-          <Input
-            {...register('id', {
-              required: 'is required',
-              minLength: {
-                value: 4,
-                message: 'longer more than 4',
-              },
-              validate: (value) => {
-                const hasAlpha = !!value.match(/[a-zA-Z]/g);
+        <TopWrapper>
+          <Title>Sign in</Title>
+          <Form onSubmit={handleSubmit(onValid, onInvalid)}>
+            <FormText>ID {errors.id ? errors.id.message : null}</FormText>
+            <Input
+              {...register('id', {
+                required: 'is required',
+                minLength: {
+                  value: 4,
+                  message: 'longer more than 4',
+                },
+                validate: (value) => {
+                  const hasAlpha = !!value.match(/[a-zA-Z]/g);
 
-                return hasAlpha ? true : 'must be include alpha';
-              },
-            })}
-            type="text"
-            placeholder="ID"
-          />
-          <FormText>
-            PW {errors.password ? errors.password.message : null}
-          </FormText>
-          <Input
-            {...register('password', {
-              required: 'is required',
-              minLength: {
-                value: 4,
-                message: 'longer more than 4',
-              },
-            })}
-            type="password"
-            placeholder="Password"
-          />
-          <Submit>create</Submit>
-        </Form>
-        <BottomWrapper>
-          <AnchorWrapper>
-            <Link href="/login">login</Link>
-          </AnchorWrapper>
+                  return hasAlpha ? true : 'must be include alpha';
+                },
+              })}
+              type="text"
+              placeholder="ID"
+            />
+            <FormText>
+              PW {errors.password ? errors.password.message : null}
+            </FormText>
+            <Input
+              {...register('password', {
+                required: 'is required',
+                minLength: {
+                  value: 4,
+                  message: 'longer more than 4',
+                },
+              })}
+              type="password"
+              placeholder="Password"
+            />
+            <Submit>create</Submit>
+          </Form>
+          <SocialText>SignIn with Social</SocialText>
           <Hr></Hr>
-          <SocialWrapper>
+          <SocialContainer>
             <Github />
-          </SocialWrapper>
+          </SocialContainer>
+        </TopWrapper>
+        <BottomWrapper>
+          <SocialText>Or Sign Up Using</SocialText>
+          <Link href="/login">login</Link>
         </BottomWrapper>
       </Container>
     </>
@@ -90,6 +92,39 @@ const Create = () => {
 };
 
 export default Create;
+
+const BottomWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 5px;
+  gap: 5px;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+`;
+
+const SocialText = styled.div`
+  margin-bottom: 10px;
+  font-weight: 600;
+  opacity: 0.7;
+`;
+
+const SocialContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const TopWrapper = styled.div`
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
 
 const Container = styled(motion.div)`
   position: absolute;
@@ -106,6 +141,7 @@ const Container = styled(motion.div)`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   transition: ease-in-out 0.15s;
 `;
@@ -113,7 +149,7 @@ const Container = styled(motion.div)`
 const Title = styled.div`
   font-size: 30px;
   width: 100%;
-  text-align: start;
+  text-align: center;
   font-weight: 600;
 `;
 
@@ -124,7 +160,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 100px;
+  margin-top: 50px;
   margin-bottom: 20px;
 `;
 
@@ -147,7 +183,7 @@ const Input = styled.input`
 `;
 
 const Submit = styled.button`
-  margin-top: 20px;
+  margin: 30px 0 30px 0;
   padding: 10px;
   border-radius: 5px;
   background: ${({ theme }) => theme.background};
@@ -160,33 +196,6 @@ const Submit = styled.button`
     background: ${({ theme }) => theme.color};
     color: ${({ theme }) => theme.background};
   }
-`;
-
-const BottomWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-`;
-
-const SocialWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-`;
-
-const AnchorWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
 `;
 
 const IC = styled.div`
