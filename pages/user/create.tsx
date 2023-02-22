@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import TextMain from '@components/TextMain';
 import FormText from '@components/FormText';
+import ErrorMessage from '@components/ErrorMessage';
 import { useForm, FieldErrors } from 'react-hook-form';
 import Hr from '@components/Hr';
 import Github from '@components/icons/github';
@@ -25,7 +26,7 @@ const Create = () => {
     console.log('valid', data);
   };
 
-  console.log(errors);
+  console.log('errors', !!errors.id, !!errors.password);
 
   const onInvalid = (err: FieldErrors) => {};
 
@@ -43,8 +44,14 @@ const Create = () => {
         <TopWrapper>
           <Title>Sign in</Title>
           <Form onSubmit={handleSubmit(onValid, onInvalid)}>
-            <FormText>ID {errors.id ? errors.id.message : null}</FormText>
+            <FormText>
+              <div>ID</div>
+              <ErrorMessage>
+                {errors.id ? errors.id.message : null}
+              </ErrorMessage>
+            </FormText>
             <Input
+              errorId={!!errors.id}
               {...register('id', {
                 required: 'is required',
                 minLength: {
@@ -61,9 +68,14 @@ const Create = () => {
               placeholder="ID"
             />
             <FormText>
-              PW {errors.password ? errors.password.message : null}
+              <div>PW</div>
+              <ErrorMessage>
+                {errors.password ? errors.password.message : null}
+              </ErrorMessage>
             </FormText>
+
             <Input
+              errorId={!!errors.password}
               {...register('password', {
                 required: 'is required',
                 minLength: {
@@ -164,21 +176,22 @@ const Form = styled.form`
   margin-bottom: 20px;
 `;
 
-const Input = styled.input`
+const Input = styled.input<{ errorId: boolean }>`
   padding: 15px;
+  font-size: 18px;
   margin-bottom: 10px;
   border: none;
   background: none;
   font-weight: 600;
-  border-bottom: solid 2px ${({ theme }) => theme.color};
+  border-bottom: solid 2px
+    ${(props) => (props.errorId ? 'red' : props.theme.color)};
   transition: ${({ theme }) => theme.transitionOption};
   border-radius: 10px 10px 0 0;
   color: ${({ theme }) => theme.color};
   :focus {
     outline: none;
     color: ${({ theme }) => theme.background};
-    background: ${({ theme }) => theme.color};
-    border-bottom: solid 2px ${({ theme }) => theme.color};
+    background: ${({ theme }) => theme.colorTransparent};
   }
 `;
 
