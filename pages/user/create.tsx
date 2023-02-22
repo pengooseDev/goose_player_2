@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import TextMain from '@components/TextMain';
 import FormText from '@components/FormText';
 import ErrorMessage from '@components/ErrorMessage';
 import { useForm, FieldErrors } from 'react-hook-form';
 import Hr from '@components/Hr';
 import Github from '@components/icons/github';
 import Link from 'next/link';
-import Image from 'next/image';
-import mainImage from '@/assets/mainImage.png';
 
 interface FormState {
   id: string;
@@ -26,24 +23,12 @@ const Create = () => {
     console.log('valid', data);
   };
 
-  console.log('errors', !!errors.id, !!errors.password);
-
-  const onInvalid = (err: FieldErrors) => {};
-
   return (
     <>
-      <IC>
-        <Image src={mainImage} alt="mainImage" />
-      </IC>
-      <TextMain>
-        <div>Hello.</div>
-        <div>We`re</div>
-        <div>Goose-Player</div>
-      </TextMain>
       <Container>
         <TopWrapper>
           <Title>Sign in</Title>
-          <Form onSubmit={handleSubmit(onValid, onInvalid)}>
+          <Form onSubmit={handleSubmit(onValid)}>
             <FormText>
               <div>ID</div>
               <ErrorMessage>
@@ -209,24 +194,6 @@ const Submit = styled.button`
     background: ${({ theme }) => theme.color};
     color: ${({ theme }) => theme.background};
   }
-`;
-
-const IC = styled.div`
-  position: absolute;
-  z-index: -10;
-  right: 0;
-  bottom: 0;
-  //transform: rotateY(180deg);
-  img {
-    transition: 0s ease-in-out;
-    //height: 800px;
-    //width: auto;
-    filter: saturate(3) sepia(70%) grayscale(90%)
-      drop-shadow(0px 0px 2px ${({ theme }) => theme.imgFilter});
-  }
-
-  //drop-shadow(0px 0px 0px ${({ theme }) => theme.color})
-  //grayscale(10%) sepia(80%)
 `;
 
 /*
