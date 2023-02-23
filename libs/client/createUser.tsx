@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { signInId, signInPassword } from '@/libs/types/Forms';
 
 interface CreateUserProps {
-  id: string;
-  password: string;
+  id: signInId;
+  password: signInPassword;
 }
 
 const createUser = async ({ id, password }: CreateUserProps) => {

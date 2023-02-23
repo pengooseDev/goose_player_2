@@ -9,11 +9,7 @@ import Link from 'next/link';
 import { useMutation } from 'react-query';
 import createUser from '@/libs/client/createUser';
 import { useRouter } from 'next/router';
-
-interface FormState {
-  id: string;
-  password: string;
-}
+import { SignInFormState } from '@/libs/types/Forms';
 
 const Create = () => {
   const router = useRouter();
@@ -21,7 +17,7 @@ const Create = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormState>();
+  } = useForm<SignInFormState>();
 
   const { mutate, data, isLoading } = useMutation(createUser, {
     onSuccess: (data, context) => {
@@ -34,9 +30,9 @@ const Create = () => {
     },
   });
 
-  const onValid = async (data: FormState) => {
-    const { id, password } = data;
-    mutate({ id, password });
+  const onValid = async (data: SignInFormState) => {
+    const { signInId, signInPassword } = data;
+    mutate({ id: signInId, password: signInPassword });
   };
 
   return (
@@ -46,11 +42,13 @@ const Create = () => {
         <Form onSubmit={handleSubmit(onValid)}>
           <FormText>
             <div>ID</div>
-            <ErrorMessage>{errors.id ? errors.id.message : null}</ErrorMessage>
+            <ErrorMessage>
+              {errors.signInId ? errors.signInId.message : null}
+            </ErrorMessage>
           </FormText>
           <Input
-            errorId={!!errors.id}
-            {...register('id', {
+            errorId={!!errors.signInId}
+            {...register('signInId', {
               required: 'is required',
               minLength: {
                 value: 4,
@@ -68,13 +66,13 @@ const Create = () => {
           <FormText>
             <div>PW</div>
             <ErrorMessage>
-              {errors.password ? errors.password.message : null}
+              {errors.signInPassword ? errors.signInPassword.message : null}
             </ErrorMessage>
           </FormText>
 
           <Input
-            errorId={!!errors.password}
-            {...register('password', {
+            errorId={!!errors.signInPassword}
+            {...register('signInPassword', {
               required: 'is required',
               minLength: {
                 value: 4,
