@@ -34,7 +34,7 @@ const Create = () => {
   return (
     <Container>
       <TopWrapper>
-        <Title>Sign in</Title>
+        <Title>Sign in </Title>
         <Form onSubmit={handleSubmit(onValid)}>
           <FormText>
             <div>ID</div>
