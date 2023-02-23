@@ -45,9 +45,9 @@ const MainText = () => {
 export default MainText;
 
 const textVariants = {
-  from: { opacity: 0, left: -300, transition: { duration: 1 } },
-  to: { opacity: 1, top: 0, transition: { duration: 1 } },
-  exit: { opacity: 0, right: 300, transition: { duration: 1 } },
+  from: { opacity: 0, transition: { duration: 1 } },
+  to: { opacity: 1, transition: { duration: 1 } },
+  exit: { opacity: 0, transition: { duration: 1 } },
 };
 
 const TextMotion = styled(motion.div)``;
