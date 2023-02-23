@@ -8,7 +8,7 @@ interface CreateUserProps {
 
 const createUser = async ({ id, password }: CreateUserProps) => {
   await axios({
-    url: `${process.env.NEXT_PUBLIC_ROOT_ROUTE}/api/user`,
+    url: `${process.env.NEXT_PUBLIC_ROOT_ROUTE}/api/user/create`,
     method: 'post',
     data: { id, password },
   });
