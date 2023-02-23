@@ -26,6 +26,7 @@ const Login = () => {
     },
 
     onError: (error) => {
+      alert('ID does not exist'); //추후 모달창으로 변경
       console.log('failed', error);
     },
   });

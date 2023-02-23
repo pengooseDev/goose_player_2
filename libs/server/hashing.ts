@@ -1,9 +1,13 @@
 const bcrypt = require('bcrypt');
 
-const hashBySort = async (str: string, saltRound: number) => {
-  const res = await bcrypt.hash(str, saltRound);
+export const encrypt = async (pw: string, saltRound: number) => {
+  const res = await bcrypt.hash(pw, saltRound);
 
   return res;
 };
 
-export default hashBySort;
+export const decrypt = async (pw: string, encryptedPw: string) => {
+  const res = await bcrypt.compareSync(pw, encryptedPw);
+
+  return res;
+};

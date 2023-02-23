@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import prismaClient from '@/libs/server/client';
-import hashBySort from '@/libs/server/hashing';
+import { encrypt } from '@/libs/server/hashing';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
@@ -12,7 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           .status(409)
           .json({ ok: false, errorMessage: 'Duplicated ID' });
 
-      const hashedPassword = await hashBySort(postPassword, 10);
+      const hashedPassword = await encrypt(postPassword, 10);
 
       const newUser = await prismaClient.user.create({
         data: {
