@@ -7,7 +7,7 @@ import Hr from '@components/Hr';
 import Github from '@components/icons/github';
 import Link from 'next/link';
 import { useMutation } from 'react-query';
-import createUser from '@/libs/client/createUser';
+import logInUser from '@/libs/client/logInUser';
 import { useRouter } from 'next/router';
 import { LogInFormState } from '@/libs/types/Forms';
 
@@ -19,7 +19,7 @@ const Login = () => {
     formState: { errors },
   } = useForm<LogInFormState>();
 
-  const { mutate, data, isLoading } = useMutation(createUser, {
+  const { mutate, data, isLoading } = useMutation(logInUser, {
     onSuccess: (data, context) => {
       router.push('/');
       console.log('success');
@@ -82,9 +82,9 @@ const Login = () => {
             type="password"
             placeholder="Password"
           />
-          <Submit>create</Submit>
+          <Submit>Login</Submit>
         </Form>
-        <SocialText>SignIn with Social</SocialText>
+        <SocialText>LogIn with Social</SocialText>
         <Hr></Hr>
         <SocialContainer>
           <Github />
