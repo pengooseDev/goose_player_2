@@ -14,6 +14,7 @@ datasource db {
 model User {
   id        Int      @id @default(autoincrement())
   nickname  String   @unique
+  password  String
   playlist  Music[]
   createdAt DateTime @default(now())
 }
