@@ -23,8 +23,8 @@
 ### user
 
 - `/user/create` : 계정을 생성한다.
-- [ ] React-hook-form을 이용해 정해진 API로 POST요청을 보낸다.
-- [ ] 유효성 검사를 진행한다.
+- [x] React-hook-form을 이용해 정해진 API로 POST요청을 보낸다.
+- [x] 유효성 검사를 진행한다.
 - +a : 유효성 검사에 통과하지 못할 경우, 문제가 있는 부분을 붉은 색으로 표시하고 Error 메시지를 박스 옆에 렌더링한다.
 - `/user/login` : 로그인을 진행하는 페이지입니다.
 - [ ] React-hook-form을 이용해 정해진 API로 POST요청을 보낸다.
