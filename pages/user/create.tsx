@@ -8,6 +8,7 @@ import Github from '@components/icons/github';
 import Link from 'next/link';
 import { useMutation } from 'react-query';
 import createUser from '@/libs/client/createUser';
+import { useRouter } from 'next/router';
 
 interface FormState {
   id: string;
@@ -15,6 +16,7 @@ interface FormState {
 }
 
 const Create = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -22,8 +24,14 @@ const Create = () => {
   } = useForm<FormState>();
 
   const { mutate, data, isLoading } = useMutation(createUser, {
-    onSuccess: () => {},
-    onError: () => {},
+    onSuccess: (data, context) => {
+      router.push('/');
+      console.log('success');
+    },
+
+    onError: (error) => {
+      console.log('failed', error);
+    },
   });
 
   const onValid = async (data: FormState) => {
