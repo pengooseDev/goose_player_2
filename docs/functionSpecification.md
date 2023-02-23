@@ -11,6 +11,10 @@
   - [x] Globalstyle 생성 & theme 생성
   - [x] Theme Toggle Btn 생성
   - [x] 변경 Motion 구현
+- [ ] 로그인 세션 구현
+- [ ] 세션에 따른 Route 및 Nav optional 렌더링
+- [ ] background Animation 추가
+- [ ] WebAPI Audio 추가
 
 ### Route
 
@@ -27,7 +31,7 @@
 - [x] 유효성 검사를 진행한다.
 - +a : 유효성 검사에 통과하지 못할 경우, 문제가 있는 부분을 붉은 색으로 표시하고 Error 메시지를 박스 옆에 렌더링한다.
 - `/user/login` : 로그인을 진행하는 페이지입니다.
-- [ ] React-hook-form을 이용해 정해진 API로 POST요청을 보낸다.
+- [x] React-hook-form을 이용해 정해진 API로 POST요청을 보낸다.
 
 ### /
 
