@@ -7,11 +7,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     case 'POST':
       const { id: postNickname, password: postPassword } = req.body;
       const isDuplicateName = await checkDuplicateByNickname(postNickname);
-      if (isDuplicateName) {
+      if (isDuplicateName)
         return res
           .status(409)
           .json({ ok: false, errorMessage: 'Duplicated ID' });
-      }
 
       const hashedPassword = await hashBySort(postPassword, 10);
 
